@@ -65,4 +65,9 @@ class TimezoneManager
     {
         return $this->timezone;
     }
+
+    public function getEnabledTimezoneNames(): array
+    {
+        return $this->enabledTimezoneNames;
+    }
 }
