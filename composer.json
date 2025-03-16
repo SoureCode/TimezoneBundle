@@ -1,0 +1,44 @@
+{
+    "name": "sourecode/timezone-bundle",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "SoureCode\\Bundle\\Timezone\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SoureCode\\Bundle\\Timezone\\Tests\\": "tests/",
+            "App\\": "tests/app/src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "chapterjason",
+            "email": "jason@sourecode.dev"
+        }
+    ],
+    "require": {
+        "ext-pcntl": "*",
+        "symfony/http-kernel": "^7.1",
+        "symfony/config": "^7.1",
+        "symfony/dependency-injection": "^7.1",
+        "symfony/intl": "^7.1"
+    },
+    "require-dev": {
+        "symfony/clock": "^7.1",
+        "twig/twig": "^v3.2",
+        "symfony/browser-kit": "^7.1",
+        "nyholm/symfony-bundle-test": "^3.0",
+        "phpunit/phpunit": "^9.5",
+        "symfony/phpunit-bridge": "^7.1",
+        "symfony/security-bundle": "^7.1",
+        "symfony/runtime": "^7.1"
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/runtime": true
+        }
+    }
+}
