@@ -18,7 +18,7 @@ final readonly class TimezoneListener implements EventSubscriberInterface
         private TimezoneManager               $timezoneManager,
         private RequestStack                  $requestStack,
         private ?RequestContextAwareInterface $router = null,
-        private string                        $defaultTimezone = 'UTC',
+        private string                        $defaultTimezone = 'Etc/UTC',
     )
     {
     }
@@ -60,7 +60,7 @@ final readonly class TimezoneListener implements EventSubscriberInterface
 
     private function setRouterContext(Request $request): void
     {
-        $this->router?->getContext()->setParameter('_timezone', $request->headers->get('X-Timezone') ?? $this->defaultTimezone);
+        $this->router?->getContext()->setParameter('_timezone', $this->timezoneManager->getTimezone());
     }
 
     public static function getSubscribedEvents(): array

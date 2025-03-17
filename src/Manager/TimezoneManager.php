@@ -20,10 +20,10 @@ class TimezoneManager
     )
     {
         if (empty($this->enabledTimezoneNames)) {
-            $this->enabledTimezoneNames = ['UTC', ...Timezones::getIds()];
+            $this->enabledTimezoneNames = Timezones::getIds();
         }
 
-        $this->timezone = new DateTimeZone('UTC');
+        $this->timezone = new DateTimeZone('Etc/UTC');
 
         self::setInstance($this);
     }

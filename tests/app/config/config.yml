@@ -17,7 +17,7 @@ services:
 
 soure_code_timezone:
     default_timezone: 'Asia/Tokyo'
-    enabled_timezones: ['UTC', 'Europe/Berlin', 'Asia/Tokyo', 'Australia/Sydney']
+    enabled_timezones: ['Etc/UTC', 'Europe/Berlin', 'Asia/Tokyo', 'Australia/Sydney']
 
 framework:
     session:

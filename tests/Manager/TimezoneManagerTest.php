@@ -43,7 +43,7 @@ class TimezoneManagerTest extends KernelTestCase
         $timezone = $timezoneManager->getTimezone();
 
         // Assert
-        $this->assertEquals('UTC', $timezone->getName());
+        $this->assertEquals('Etc/UTC', $timezone->getName());
     }
 
     public function testSetValidTimezone(): void

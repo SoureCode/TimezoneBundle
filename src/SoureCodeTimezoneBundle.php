@@ -18,14 +18,14 @@ class SoureCodeTimezoneBundle extends AbstractBundle
 
     public function configure(DefinitionConfigurator $definition): void
     {
-        $timezones = ['UTC', ...Timezones::getIds()];
+        $timezones = Timezones::getIds();
 
         // @formatter:off
         $definition->rootNode()
             ->fixXmlConfig('timezone')
             ->children()
                 ->scalarNode('default_timezone')
-                    ->defaultValue('UTC')
+                    ->defaultValue('Etc/UTC')
                     ->info('The default timezone.')
                     ->validate()
                         ->ifTrue(fn ($v) => !in_array($v, $timezones, true))
