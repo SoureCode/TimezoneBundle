@@ -3,6 +3,7 @@
 namespace SoureCode\Bundle\Timezone\Manager;
 
 use DateTimeZone;
+use Symfony\Component\Clock\Clock;
 use Symfony\Component\Clock\ClockInterface;
 use Symfony\Component\Intl\Timezones;
 use Twig\Environment;
@@ -37,7 +38,7 @@ class TimezoneManager
     {
         // in case of getting called from a command or messenger. (console)
         if (!isset(self::$instance)) {
-            new self();
+            new self([], Clock::get());
         }
 
         return self::$instance;
