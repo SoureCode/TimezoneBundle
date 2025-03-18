@@ -47,15 +47,10 @@ final readonly class TimezoneListener implements EventSubscriberInterface
     {
         if ($timezone = $request->attributes->get('_timezone')) {
             $this->timezoneManager->setTimezone($timezone);
+        } else {
+            $request->attributes->set('_timezone', $this->timezoneManager->getTimezone());
         }
 
-        if (!$request->hasPreviousSession()) {
-            return;
-        }
-
-        if ($timezone = $request->getSession()->get('_timezone')) {
-            $this->timezoneManager->setTimezone($timezone);
-        }
     }
 
     private function setRouterContext(Request $request): void

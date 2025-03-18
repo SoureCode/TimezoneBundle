@@ -6,7 +6,6 @@ use Nyholm\BundleTest\TestKernel;
 use SoureCode\Bundle\Timezone\Manager\TimezoneManager;
 use SoureCode\Bundle\Timezone\SoureCodeTimezoneBundle;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Bundle\SecurityBundle\SecurityBundle;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 class BundleInitializationTest extends KernelTestCase
@@ -24,7 +23,6 @@ class BundleInitializationTest extends KernelTestCase
         $kernel = parent::createKernel($options);
         $kernel->setTestProjectDir(__DIR__ . '/app');
         $kernel->addTestBundle(SoureCodeTimezoneBundle::class);
-        $kernel->addTestBundle(SecurityBundle::class);
         $kernel->addTestConfig(__DIR__ . '/app/config/config.yml');
         $kernel->handleOptions($options);
 

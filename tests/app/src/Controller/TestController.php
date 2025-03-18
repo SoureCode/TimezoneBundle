@@ -26,7 +26,7 @@ class TestController extends AbstractController
 
     #[Route('/set', name: 'app_set')]
     public function set(
-        Request $request,
+        Request         $request,
         TimezoneManager $timezoneManager
     ): JsonResponse
     {
