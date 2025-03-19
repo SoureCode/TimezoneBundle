@@ -34,11 +34,13 @@ class TimezoneListenerTest extends WebTestCase
 
         // Act
         $client->request('GET', '/');
+        $request = $client->getRequest();
         $response = $client->getResponse();
 
         // Assert
         self::assertResponseStatusCodeSame(200, 'The response is not successful.');
         self::assertSame('["Asia\/Tokyo"]', $response->getContent(), 'The timezone is not set correctly.');
+        self::assertSame('Asia/Tokyo', $request->attributes->get('_timezone'));
     }
 
     public function testOverrideDefaultTimezone(): void
@@ -48,10 +50,13 @@ class TimezoneListenerTest extends WebTestCase
 
         // Act
         $client->request('GET', '/override');
+        $request = $client->getRequest();
         $response = $client->getResponse();
 
         // Assert
         self::assertResponseStatusCodeSame(200, 'The response is not successful.');
         self::assertSame('["Europe\/Berlin"]', $response->getContent(), 'The timezone is not set correctly.');
+        self::assertSame('Europe/Berlin', $request->attributes->get('_timezone'));
+
     }
 }
