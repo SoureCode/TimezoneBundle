@@ -12,6 +12,8 @@ This bundle provides a simple way to manage timezones in Symfony applications.
 Unfortunately, there is no way to set the timezone in the request object, so you have to get it from the `TimezoneManager`.
 Except from that, the usage is pretty simple and the same as for the locale.
 
+- [License](./LICENSE)
+
 ## Installation
 
 Make sure Composer is installed globally, as explained in the
