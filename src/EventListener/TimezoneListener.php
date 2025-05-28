@@ -15,12 +15,11 @@ use Symfony\Component\Routing\RequestContextAwareInterface;
 final readonly class TimezoneListener implements EventSubscriberInterface
 {
     public function __construct(
-        private TimezoneManager               $timezoneManager,
-        private RequestStack                  $requestStack,
+        private TimezoneManager $timezoneManager,
+        private RequestStack $requestStack,
         private ?RequestContextAwareInterface $router = null,
-        private string                        $defaultTimezone = 'Etc/UTC',
-    )
-    {
+        private string $defaultTimezone = 'Etc/UTC',
+    ) {
     }
 
     public function setDefaultTimezone(KernelEvent $event): void
@@ -50,7 +49,6 @@ final readonly class TimezoneListener implements EventSubscriberInterface
         } else {
             $request->attributes->set('_timezone', $this->timezoneManager->getTimezone()->getName());
         }
-
     }
 
     private function setRouterContext(Request $request): void

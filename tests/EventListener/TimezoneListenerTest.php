@@ -5,6 +5,7 @@ namespace SoureCode\Bundle\Timezone\Tests\EventListener;
 use Nyholm\BundleTest\TestKernel;
 use SoureCode\Bundle\Timezone\SoureCodeTimezoneBundle;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Bundle\MonologBundle\MonologBundle;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 class TimezoneListenerTest extends WebTestCase
@@ -19,8 +20,10 @@ class TimezoneListenerTest extends WebTestCase
         /** @var TestKernel $kernel */
         $kernel = parent::createKernel($options);
         $kernel->setTestProjectDir(__DIR__ . '/../app');
+        $kernel->addTestBundle(MonologBundle::class);
         $kernel->addTestBundle(SoureCodeTimezoneBundle::class);
         $kernel->addTestConfig(__DIR__ . '/../app/config/config.yml');
+        $kernel->addTestConfig(__DIR__ . '/../app/config/monolog.yaml');
         $kernel->addTestRoutingFile(__DIR__ . '/../app/config/routes.yml');
         $kernel->handleOptions($options);
 

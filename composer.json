@@ -1,18 +1,8 @@
 {
     "name": "sourecode/timezone-bundle",
-    "type": "symfony-bundle",
+    "description": "A Symfony bundle for managing timezones in applications.",
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "SoureCode\\Bundle\\Timezone\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "SoureCode\\Bundle\\Timezone\\Tests\\": "tests/",
-            "App\\": "tests/app/src/"
-        }
-    },
+    "type": "symfony-bundle",
     "authors": [
         {
             "name": "chapterjason",
@@ -20,19 +10,34 @@
         }
     ],
     "require": {
-        "symfony/http-kernel": "^7.1",
+        "php": ">=8.3",
+        "symfony/clock": "^7.1",
         "symfony/config": "^7.1",
         "symfony/dependency-injection": "^7.1",
-        "symfony/intl": "^7.1"
+        "symfony/event-dispatcher": "^7.1",
+        "symfony/http-foundation": "^7.1",
+        "symfony/http-kernel": "^7.1",
+        "symfony/intl": "^7.1",
+        "twig/twig": "^3.21"
     },
     "require-dev": {
-        "symfony/clock": "^7.1",
-        "twig/twig": "^v3.2",
-        "symfony/browser-kit": "^7.1",
         "nyholm/symfony-bundle-test": "^3.0",
         "phpunit/phpunit": "^9.5",
+        "symfony/browser-kit": "^7.1",
+        "symfony/monolog-bundle": "^3.10",
         "symfony/phpunit-bridge": "^7.1",
         "symfony/runtime": "^7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "SoureCode\\Bundle\\Timezone\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\": "tests/app/src/",
+            "SoureCode\\Bundle\\Timezone\\Tests\\": "tests/"
+        }
     },
     "config": {
         "allow-plugins": {
