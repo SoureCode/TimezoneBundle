@@ -1,6 +1,13 @@
 
 # sourecode/timezone-bundle
 
+[![Packagist Version](https://img.shields.io/packagist/v/sourecode/timezone-bundle.svg)](https://packagist.org/packages/sourecode/timezone-bundle)
+[![Downloads](https://img.shields.io/packagist/dt/sourecode/timezone-bundle.svg)](https://packagist.org/packages/sourecode/timezone-bundle)
+[![CI](https://github.com/SoureCode/TimezoneBundle/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/SoureCode/TimezoneBundle/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/SoureCode/TimezoneBundle/branch/master/graph/badge.svg?token=3862YZNG87)](https://codecov.io/gh/SoureCode/TimezoneBundle)
+[![Mutation testing badge](https://img.shields.io/endpoint?style=flat&url=https%3A%2F%2Fbadge-api.stryker-mutator.io%2Fgithub.com%2FSoureCode%2FTimezoneBundle%2Fmaster)](https://dashboard.stryker-mutator.io/reports/github.com/SoureCode/TimezoneBundle/master)
+
+
 This bundle provides a simple way to manage timezones in Symfony applications.
 Unfortunately, there is no way to set the timezone in the request object, so you have to get it from the `TimezoneManager`.
 Except from that, the usage is pretty simple and the same as for the locale.
