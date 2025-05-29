@@ -13,11 +13,14 @@ class TimezoneManager
     private \DateTimeZone $timezone;
 
     public function __construct(
+        /**
+         * @var list<string> $enabledTimezoneNames
+         */
         private array $enabledTimezoneNames = [],
         private readonly ?Environment $twig = null,
     ) {
         if (empty($this->enabledTimezoneNames)) {
-            $this->enabledTimezoneNames = Timezones::getIds();
+            $this->enabledTimezoneNames = array_values(Timezones::getIds());
         }
 
         $this->timezone = new \DateTimeZone('Etc/UTC');
@@ -63,6 +66,9 @@ class TimezoneManager
         return $this->timezone;
     }
 
+    /**
+     * @return list<string>
+     */
     public function getEnabledTimezoneNames(): array
     {
         return $this->enabledTimezoneNames;

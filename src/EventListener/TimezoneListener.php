@@ -44,7 +44,9 @@ final readonly class TimezoneListener implements EventSubscriberInterface
 
     private function setTimezone(Request $request): void
     {
-        if ($timezone = $request->attributes->get('_timezone')) {
+        $timezone = $request->attributes->getString('_timezone');
+
+        if ('' !== $timezone) {
             $this->timezoneManager->setTimezone($timezone);
         } else {
             $request->attributes->set('_timezone', $this->timezoneManager->getTimezone()->getName());

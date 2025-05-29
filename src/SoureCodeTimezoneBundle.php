@@ -4,6 +4,7 @@ namespace SoureCode\Bundle\Timezone;
 
 use SoureCode\Bundle\Timezone\EventListener\TimezoneListener;
 use SoureCode\Bundle\Timezone\Manager\TimezoneManager;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -21,31 +22,35 @@ class SoureCodeTimezoneBundle extends AbstractBundle
     {
         $timezones = Timezones::getIds();
 
+        /**
+         * @var ArrayNodeDefinition $rootNode
+         */
+        $rootNode = $definition->rootNode();
+        $children = $rootNode->fixXmlConfig('timezone')->children();
+
         // @formatter:off
-        $definition->rootNode()
-            ->fixXmlConfig('timezone')
-            ->children()
-                ->scalarNode('default_timezone')
-                    ->defaultValue('Etc/UTC')
-                    ->info('The default timezone.')
-                    ->validate()
-                        ->ifTrue(fn ($v) => !\in_array($v, $timezones, true))
-                        ->thenInvalid('The timezone "%s" is not valid.')
-                    ->end()
-                ->end()
-                ->arrayNode('enabled_timezones')
-                    ->scalarPrototype()->end()
-                    ->info('List of enabled timezones. If empty, all timezones are enabled.')
-                    ->validate()
-                        ->ifTrue(fn (array $values) => \count(array_diff($values, $timezones)) > 0)
-                        ->then(fn (array $values) => throw new \InvalidArgumentException(\sprintf('The timezones "%s" are not valid.', implode('", "', array_diff($values, $timezones)))))
-                    ->end()
-                ->end()
-            ->end()
+        $children
+            ->scalarNode('default_timezone')
+                ->defaultValue('Etc/UTC')
+                ->info('The default timezone.')
+                ->validate()
+                    ->ifTrue(fn ($v) => !\in_array($v, $timezones, true))
+                    ->thenInvalid('The timezone "%s" is not valid.');
+
+        $children
+            ->arrayNode('enabled_timezones')
+                ->scalarPrototype()->end()
+                ->info('List of enabled timezones. If empty, all timezones are enabled.')
+                ->validate()
+                    ->ifTrue(fn (array $values) => \count(array_diff($values, $timezones)) > 0)
+                    ->then(fn (array $values) => throw new \InvalidArgumentException(\sprintf('The timezones "%s" are not valid.', implode('", "', array_diff($values, $timezones)))))
         ;
         // @formatter:on
     }
 
+    /**
+     * @param array{default_timezone: string, enabled_timezones: list<string>} $config
+     */
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
         $parameters = $container->parameters();
